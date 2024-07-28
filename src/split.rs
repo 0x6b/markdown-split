@@ -13,7 +13,9 @@ use markdown::{
 ///
 /// # Arguments
 ///
-/// * `text`: A string slice containing the markdown text to split.
+/// - `text`: A string slice containing the markdown text to split.
+/// - `options`: An optional `ParseOptions` struct to configure the markdown parser. If `None`,
+///   `ParseOptions::gfm()` (GitHub Flavored Markdown) is used.
 ///
 /// # Returns
 ///
