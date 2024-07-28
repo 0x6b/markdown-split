@@ -23,8 +23,13 @@ use markdown::{
 ///
 /// # Errors
 ///
-/// Returns an error if the markdown text cannot be parsed by the `markdown` crate.
+/// Returns an error if the markdown text is empty or if the text cannot be parsed by the `markdown`
+/// crate.
 pub fn split<'a>(text: &'a str, options: Option<&ParseOptions>) -> Result<Vec<&'a str>> {
+    if text.is_empty() {
+        return Err(anyhow!("The input text is empty"));
+    }
+
     let options = if let Some(o) = options { o } else { &ParseOptions::gfm() };
     let ast = to_mdast(text, options).map_err(|e| anyhow!("{e}"))?;
     let mut split_points = find_split_points(&ast);
