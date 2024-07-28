@@ -547,4 +547,12 @@ sure what it does or how to use it, use the application programming interface
 標準ライブラリにより提供される型や関数がなんなのかや、それをどう使えば良いのかがよくわからないときは、いつでもAPIのドキュメンテーションを検索してみてください！"#
         );
     }
+
+    #[test]
+    fn test_empty() {
+        let text = "";
+        let result = split(text, None);
+        assert!(result.is_err());
+        assert_eq!(result.unwrap_err().to_string(), "The input text is empty");
+    }
 }
