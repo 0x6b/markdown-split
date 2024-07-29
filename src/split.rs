@@ -66,15 +66,10 @@ fn find_split_points(node: &Node) -> Vec<usize> {
     traverse(node, &mut split_points);
 
     // The very first split point should always be 0 (the start of the text.)
-    if let Some(&first) = split_points.first() {
-        if first != 0 {
-            split_points.insert(0, 0);
-        }
-    }
-
-    // If no headings are found, return a single split point at the start of the text.
-    if split_points.is_empty() {
-        split_points.push(0);
+    match split_points.first() {
+        Some(&first) if first != 0 => split_points.insert(0, 0),
+        None => split_points.push(0),
+        _ => { /* Keep it as is */ }
     }
 
     split_points
