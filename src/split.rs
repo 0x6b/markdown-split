@@ -72,6 +72,11 @@ fn find_split_points(node: &Node) -> Vec<usize> {
         }
     }
 
+    // If no headings are found, return a single split point at the start of the text.
+    if split_points.is_empty() {
+        split_points.push(0);
+    }
+
     split_points
 }
 
@@ -554,5 +559,16 @@ sure what it does or how to use it, use the application programming interface
         let result = split(text, None);
         assert!(result.is_err());
         assert_eq!(result.unwrap_err().to_string(), "The input text is empty");
+    }
+
+    #[test]
+    fn test_no_headers() {
+        let text = r#"> Ipsum lorem dolor sit amet
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+"#;
+        let sections = split(text, None).unwrap();
+        assert_eq!(sections.len(), 1);
+        assert_eq!(sections[0], text);
     }
 }
