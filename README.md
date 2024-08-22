@@ -11,6 +11,10 @@ markdown-split = { git = "https://github.com/0x6b/markdown-split", tag = "vx.x.x
 
 See [`examples/basic.rs`](examples/basic.rs) for usage.
 
+## Notes
+
+You may find [text_splitter](https://docs.rs/text-splitter/) crate with the `markdown` feature more useful for your use case. This is for my personal simple use case.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
